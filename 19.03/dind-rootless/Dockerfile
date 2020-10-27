@@ -44,6 +44,7 @@ RUN set -eux; \
 	rootlesskit --version; \
 	vpnkit --version
 
+
 # pre-create "/var/lib/docker" for our rootless user
 RUN set -eux; \
 	mkdir -p /home/rootless/.local/share/docker; \

@@ -47,6 +47,12 @@ RUN set -eux; \
 	rootlesskit --version; \
 	vpnkit --version
 
+# The kernel-mode overlayfs doesn't work with rootless on kernel < 5.11,
+# though Ubuntu and Debian has patched their kernel to enable overlayfs for rootless.
+#
+# OTOH fuse-overlayfs works with rootless on any distro with kernel >= 4.18.
+RUN apk add --no-cache fuse-overlayfs
+
 # pre-create "/var/lib/docker" for our rootless user
 RUN set -eux; \
 	mkdir -p /home/rootless/.local/share/docker; \
